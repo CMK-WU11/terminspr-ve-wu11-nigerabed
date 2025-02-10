@@ -22,14 +22,14 @@ export default function SearchField() {
           onChange={(e) => setSearchedText(e.target.value)}
           value={searchedText}
           type="search"
-          className="h-[3.5em] w-[85%] bg-[#7D5B75] mt-[.5em]"
+          className="h-[2em] w-[85%] bg-[#7D5B75] mt-[.5em] text-white text-[2em] pl-[.7em]"
         />
         <Image
           src={search}
           alt="search"
           width={35}
           height={35}
-          className="absolute right-[3em] top-[1.2em] text-black "
+          className="absolute right-[3em] top-[1.8em] text-black "
         />
       </form>
     </>
