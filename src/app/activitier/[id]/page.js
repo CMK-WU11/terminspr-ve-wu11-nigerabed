@@ -3,6 +3,12 @@ import Footer from "@/components/Footer";
 import { serverFetch } from "@/lib/server-fetch";
 import Image from "next/image";
 
+export const metadata = {
+    title: "Details-Activities",
+    description: "se activiti detailer here.",
+  };
+  
+
 export default async function ActivityDetails({ params }) {
   const data = await serverFetch(
     `http://localhost:4000/api/v1/activities/${params.id}`
