@@ -1,6 +1,7 @@
 import Image from "next/image";
 import logo from "../assets/logo.png";
 import Button from "@/components/Button";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -11,8 +12,9 @@ export default function Home() {
         height={200}
         className="absolute bottom-[18em]"
       />
-
+<Link href="/activitier">
       <Button text={"Kom i gang"}/>
+</Link>
     </div>
   );
 }
