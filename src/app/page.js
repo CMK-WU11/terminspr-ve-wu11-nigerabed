@@ -12,9 +12,11 @@ export default function Home() {
         height={200}
         className="absolute bottom-[18em]"
       />
-<Link href="/activitier">
-      <Button text={"Kom i gang"}/>
-</Link>
+      <div className="absolute bottom-[5em] left-[4em]">
+        <Link href="/activitier">
+          <Button text={"Kom i gang"} />
+        </Link>
+      </div>
     </div>
   );
 }

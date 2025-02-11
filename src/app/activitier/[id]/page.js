@@ -24,7 +24,7 @@ export default async function ActivityDetails({ params }) {
             height={150}
             className="h-[30em] w-full object-cover"
           />
-          <div className="pl-[5em] ">
+          <div className="pl-[5em] absolute bottom-[2em] left-[2em]">
             <Button text={"Tilmeld"} />
           </div>
         </div>
@@ -32,11 +32,7 @@ export default async function ActivityDetails({ params }) {
           <h2 className="text-white text-[1.9em] font-semibold">{data.name}</h2>
           <div className="text-white text-[1.4em]">
             {data.minAge}-{data.maxAge} år
-            <p className="text-[18px]">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                 Eget elementum lorem nulla vitae felis auctor pretium suspendisse et.
-                  Condimentum fringilla odio vitae interdum adipiscing odio volutpat.
-                   Faucibus gravida quis nisi, purus morbi leo nulla a.
-                    Mattis tincidunt phasellus enim, egestas non ultrices.</p>
+            <p className="text-[18px]">{data.description}</p>
           </div>
         </div>
       </section>
