@@ -5,13 +5,14 @@ import { useState } from "react";
 
 import Image from "next/image";
 import search from "../assets/search.png";
+import { redirect } from "next/navigation";
 
 export default function SearchField() {
     const [searchedText, setSearchedText] = useState("");
 
     async function handleSearch(e) {
         e.preventDefault();
-        
+        redirect("/sogeSide?search="+ searchedText)
     }
 
   return (
