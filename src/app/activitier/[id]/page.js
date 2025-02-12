@@ -1,18 +1,43 @@
 import Button from "@/components/Button";
 import Footer from "@/components/Footer";
-import { serverFetch } from "@/lib/server-fetch";
+import TidmeldButton from "@/components/tidmeldButton";
+import { serverFetch, serverFetchWithAuth } from "@/lib/server-fetch";
+import { cookies } from "next/headers";
 import Image from "next/image";
 
 export const metadata = {
-    title: "Details-Activities",
-    description: "se activiti detailer here.",
-  };
-  
+  title: "Details-Activities",
+  description: "se activiti detailer here.",
+};
 
 export default async function ActivityDetails({ params }) {
+  const cookieStore = await cookies();
+
+  const activityId = params?.id;
+
   const data = await serverFetch(
-    `http://localhost:4000/api/v1/activities/${params.id}`
+    `http://localhost:4000/api/v1/activities/${activityId}`
   );
+  const userId = cookieStore.get("landrup_userid");
+  const token = cookieStore.get("landrup_token");
+  let isTilmeldt = false;
+
+  if(userId && token){
+    const userData = await serverFetchWithAuth(
+      `http://localhost:4000/api/v1/users/${userId.value}`,
+      token.value
+    );
+  
+    const found = userData.activities.filter((act) => activityId == act.id);
+    
+    if (found.length > 0) {
+      isTilmeldt = true;
+    } 
+  }
+ 
+
+
+  console.log("isTilmeldt......", isTilmeldt);
   return (
     <>
       <section>
@@ -24,9 +49,7 @@ export default async function ActivityDetails({ params }) {
             height={150}
             className="h-[30em] w-full object-cover"
           />
-          <div className="pl-[5em] absolute bottom-[2em] left-[2em]">
-            <Button text={"Tilmeld"} />
-          </div>
+          {!isTilmeldt ? <TidmeldButton activityId={activityId} /> : "utilmed"}
         </div>
         <div className="p-[2em]">
           <h2 className="text-white text-[1.9em] font-semibold">{data.name}</h2>
@@ -36,7 +59,7 @@ export default async function ActivityDetails({ params }) {
           </div>
         </div>
       </section>
-      <Footer/>
+      <Footer />
     </>
   );
 }

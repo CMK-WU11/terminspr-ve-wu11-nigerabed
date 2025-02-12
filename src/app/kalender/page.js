@@ -1,6 +1,5 @@
 import KalenderCard from "@/components/KalenderCard";
 import PageHeader from "@/components/PageHeader";
-import { serverFetch } from "@/lib/server-fetch";
 import { cookies } from "next/headers";
 
 export default async function kalender(){

@@ -1,3 +1,6 @@
+
+import { NextResponse } from "next/server"
+
 export async function serverFetch(url) {
 	try {
 		const response = await fetch(url)
@@ -6,5 +9,27 @@ export async function serverFetch(url) {
 		return await response.json()
 	} catch (error) {
 		throw new Error(error)
+	}
+}
+
+// serverFetchWithAuth function fetch data with api and token ( jeg har brught den function i tilmeld activity fordi skal jeg brug user api med token)
+export async function serverFetchWithAuth(url, token) {
+
+	try {
+		const response = await fetch(url,{
+			"headers": {
+              "Authorization":  "Bearer " + token,
+              "content-type": "application/json"
+            }
+		})
+		
+		if (response.status === 500) {
+			// Redirect to login page
+			return NextResponse.redirect(new URL("/login", request.url))
+			 
+		  }
+		return await response.json()
+	} catch (error) {
+ 		throw new Error(error)
 	}
 }
