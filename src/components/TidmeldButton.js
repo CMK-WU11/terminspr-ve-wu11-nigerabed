@@ -5,16 +5,14 @@ import { getCookie } from "cookies-next";
 import { redirect } from "next/navigation";
 
 export default function TidmeldButton({ activityId }) {
-  console.log("--------", activityId);
-
   async function handleTilmeldButton() {
+    //import { getCookie } from "cookies-next" fordi den er client side.
     const token = getCookie("landrup_token");
     const userId = getCookie("landrup_userid");
 
     if (!token || !userId) {
       redirect("/login");
     }
-    console.log("process tilmeld");
 
     let isTilmeldtDone = false;
     try {
@@ -29,22 +27,15 @@ export default function TidmeldButton({ activityId }) {
         }
       );
 
-      console.log("------------>>>>>>");
-     
-      isTilmeldtDone = true;
-
-      // setIsTilmeldt(data.isTilmeldt);
+      if (response.status === 200) 
+        isTilmeldtDone = true;
     } catch (e) {
-      console.log("some thing wrong...................");
       console.log(e);
     }
 
-
     if (isTilmeldtDone) {
-        redirect("/activitier");
-      }
-
-
+      redirect("/activitier" + activityId);
+    }
   }
 
   return (

@@ -12,7 +12,7 @@ export async function serverFetch(url) {
 	}
 }
 
-// serverFetchWithAuth function fetch data with api and token ( jeg har brught den function i tilmeld activity fordi skal jeg brug user api med token)
+// serverFetchWithAuth this function fetch data with api and token ( jeg har brught den function i tilmeld activityDetails fordi skal jeg brug user api med token)
 export async function serverFetchWithAuth(url, token) {
 
 	try {
@@ -22,7 +22,7 @@ export async function serverFetchWithAuth(url, token) {
               "content-type": "application/json"
             }
 		})
-		
+		//if token expiries server response status code 500.
 		if (response.status === 500) {
 			// Redirect to login page
 			return NextResponse.redirect(new URL("/login", request.url))

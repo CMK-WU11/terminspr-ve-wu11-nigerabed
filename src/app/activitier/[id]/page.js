@@ -18,6 +18,7 @@ export default async function ActivityDetails({ params }) {
   const data = await serverFetch(
     `http://localhost:4000/api/v1/activities/${activityId}`
   );
+
   const userId = cookieStore.get("landrup_userid");
   const token = cookieStore.get("landrup_token");
   let isTilmeldt = false;
@@ -34,10 +35,7 @@ export default async function ActivityDetails({ params }) {
       isTilmeldt = true;
     } 
   }
- 
 
-
-  console.log("isTilmeldt......", isTilmeldt);
   return (
     <>
       <section>
@@ -49,7 +47,7 @@ export default async function ActivityDetails({ params }) {
             height={150}
             className="h-[30em] w-full object-cover"
           />
-          {!isTilmeldt ? <TidmeldButton activityId={activityId} /> : "utilmed"}
+          {!isTilmeldt ? <TidmeldButton activityId={activityId} /> : <div className="absolute bottom-7 left-[6em]"> <Button text ={"Forlad"} /> </div>}
         </div>
         <div className="p-[2em]">
           <h2 className="text-white text-[1.9em] font-semibold">{data.name}</h2>
