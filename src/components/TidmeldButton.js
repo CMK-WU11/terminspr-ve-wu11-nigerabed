@@ -16,7 +16,8 @@ export default function TidmeldButton({ activityId }) {
 
     let isTilmeldtDone = false;
     try {
-      const response = fetch(
+    
+      const response = await fetch(
         `http://localhost:4000/api/v1/users/${userId}/activities/${activityId}`,
         {
           method: "POST",
@@ -27,14 +28,15 @@ export default function TidmeldButton({ activityId }) {
         }
       );
 
-      if (response.status === 200) 
+      if (response.status === 200) {
         isTilmeldtDone = true;
+      }
     } catch (e) {
       console.log(e);
     }
 
     if (isTilmeldtDone) {
-      redirect("/activitier" + activityId);
+      redirect("/activitier/" + activityId);
     }
   }
 

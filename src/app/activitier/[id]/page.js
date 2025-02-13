@@ -1,6 +1,6 @@
 import Button from "@/components/Button";
 import Footer from "@/components/Footer";
-import TidmeldButton from "@/components/tidmeldButton";
+import TidmeldButton from "@/components/TidmeldButton";
 import { serverFetch, serverFetchWithAuth } from "@/lib/server-fetch";
 import { cookies } from "next/headers";
 import Image from "next/image";
@@ -29,9 +29,9 @@ export default async function ActivityDetails({ params }) {
       token.value
     );
   
-    const found = userData.activities.filter((act) => activityId == act.id);
+    const tilmeldtActivity = userData.activities.find((act) => activityId == act.id);
     
-    if (found.length > 0) {
+    if (tilmeldtActivity) {
       isTilmeldt = true;
     } 
   }

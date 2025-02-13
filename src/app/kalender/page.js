@@ -23,7 +23,7 @@ export default async function kalender() {
     return (
       <>
         <PageHeader indhold={"Kalender"} />
-        <div className="flex justify-center items-center">
+        <div className="flex flex-col justify-center items-center">
           <KalenderCard userData={data} />
         </div>
       </>
