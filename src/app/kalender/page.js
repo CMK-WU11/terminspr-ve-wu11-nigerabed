@@ -2,18 +2,17 @@ import KalenderCard from "@/components/KalenderCard";
 import PageHeader from "@/components/PageHeader";
 import { cookies } from "next/headers";
 
-export const metadata = {
-  title: "Kalender",
-  description: "se kalender here.",
-};
-
 export default async function kalender() {
   const cookieStore = await cookies();
   const token = cookieStore.get("landrup_token");
   const userId = cookieStore.get("landrup_userid");
+
+
+  const baseUrl = process.env.NEXT_PUBLIC_LANDRUP_API_BASE_URL;
+  
   try {
     const res = await fetch(
-      `http://localhost:4000/api/v1/users/${userId.value}`,
+      `${baseUrl}/api/v1/users/${userId.value}`,
       {
         method: "GET",
         headers: {
