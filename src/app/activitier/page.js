@@ -1,76 +1,29 @@
 export const metadata = {
-  title: "Details-Activities",
-  description: "se activiti detailer here.",
+  title: "Activities",
+  description: "Forskellige activitere here.",
 };
 
-import Button from "@/components/Button";
+import ActivityCard from "@/components/ActivityCard";
 import Footer from "@/components/Footer";
-import TidmeldButton from "@/components/TidmeldButton";
-import { serverFetch, serverFetchWithAuth } from "@/lib/server-fetch";
-import { cookies } from "next/headers";
-import Image from "next/image";
+import PageHeader from "@/components/PageHeader";
+import { serverFetch } from "@/lib/server-fetch";
 
-
-export default async function ActivityDetails({ params }) {
-
-  const baseUrl = process.env.NEXT_PUBLIC_LANDRUP_API_BASE_URL;
- 
-
-  console.log("baseUrl", baseUrl);
-
-  const cookieStore = await cookies();
-
-  const activityId = params?.id;
-
-  const data = await serverFetch(
-    `${baseUrl}/api/v1/activities/${activityId}`
-  );
-
-  const url =data.asset.url;
-  const newUrl = baseUrl + url.slice("http://localhost:4000".length);
-
-  const userId = cookieStore.get("landrup_userid");
-  const token = cookieStore.get("landrup_token");
-  let isTilmeldt = false;
-
-  if(userId && token){
-
-    // serverFetchWithAuth this function fetch data with api and token ( jeg har brught den function i 
-    // tilmeld activityDetails fordi skal jeg brug user api med token)
-
-    const userData = await serverFetchWithAuth(
-      `${baseUrl}/api/v1/users/${userId.value}`,
-      token.value
-    );
+export default async function Activitier() {
   
-    const tilmeldtActivity = userData.activities.filter((act) => activityId == act.id);
-    
-    if (tilmeldtActivity.length > 0) {
-      isTilmeldt = true;
-    } 
-  }
-
+  const baseUrl = process.env.NEXT_PUBLIC_LANDRUP_API_BASE_URL;
+  const data = await serverFetch(`${baseUrl}/api/v1/activities`);
   return (
     <>
-      <section>
-        <div className="relative">
-          <Image
-            src={newUrl}
-            alt="activity"
-            width={250}
-            height={150}
-            className="h-[30em] w-full object-cover"
-          />
-          {!isTilmeldt ? <TidmeldButton activityId={activityId} /> : <div className="absolute bottom-7 left-[6em]"> <Button text ={"Forlad"} /> </div>}
-        </div>
-        <div className="p-[2em]">
-          <h2 className="text-white text-[1.9em] font-semibold">{data.name}</h2>
-          <div className="text-white text-[1.4em]">
-            {data.minAge}-{data.maxAge} år
-            <p className="text-[18px]">{data.description}</p>
-          </div>
-        </div>
-      </section>
+      <main className="mb-[5em]">
+        <PageHeader
+          indhold={<h1 className="text-[1em] text-white">Activitier</h1>}
+        />
+        <ul>
+          {data.map((activity) => (
+            <ActivityCard key={activity.id} activity={activity} />
+          ))}
+        </ul>
+      </main>
       <Footer />
     </>
   );
