@@ -12,7 +12,8 @@ export async function serverFetch(url) {
 	}
 }
 
-// serverFetchWithAuth this function fetch data with api and token ( jeg har brught den function i tilmeld activityDetails fordi skal jeg brug user api med token)
+// serverFetchWithAuth this function fetch data with api and token 
+// ( jeg har brught den function i tilmeld activityDetails fordi skal jeg brug user api med token)
 export async function serverFetchWithAuth(url, token) {
 
 	try {

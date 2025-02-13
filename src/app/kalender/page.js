@@ -2,6 +2,11 @@ import KalenderCard from "@/components/KalenderCard";
 import PageHeader from "@/components/PageHeader";
 import { cookies } from "next/headers";
 
+export const metadata = {
+  title: "Kalender",
+  description: "se kalender here.",
+};
+
 export default async function kalender() {
   const cookieStore = await cookies();
   const token = cookieStore.get("landrup_token");

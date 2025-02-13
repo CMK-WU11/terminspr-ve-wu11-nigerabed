@@ -23,17 +23,21 @@ export default async function ActivityDetails({ params }) {
   const token = cookieStore.get("landrup_token");
   let isTilmeldt = false;
 
-  if(userId && token){
+  if (userId && token) {
+    // serverFetchWithAuth this function fetch data with api and token ( jeg har brught den function 
+    // i tilmeld activityDetails fordi skal jeg brug user api med token)
     const userData = await serverFetchWithAuth(
       `http://localhost:4000/api/v1/users/${userId.value}`,
       token.value
     );
-  
-    const tilmeldtActivity = userData.activities.find((act) => activityId == act.id);
-    
+
+    const tilmeldtActivity = userData.activities.find(
+      (act) => activityId == act.id
+    );
+
     if (tilmeldtActivity) {
       isTilmeldt = true;
-    } 
+    }
   }
 
   return (
@@ -47,7 +51,13 @@ export default async function ActivityDetails({ params }) {
             height={150}
             className="h-[30em] w-full object-cover"
           />
-          {!isTilmeldt ? <TidmeldButton activityId={activityId} /> : <div className="absolute bottom-7 left-[6em]"> <Button text ={"Forlad"} /> </div>}
+          {!isTilmeldt ? (
+            <TidmeldButton activityId={activityId} />
+          ) : (
+            <div className="absolute bottom-8 left-[7em]">
+              <Button text={"Forlad"} />
+            </div>
+          )}
         </div>
         <div className="p-[2em]">
           <h2 className="text-white text-[1.9em] font-semibold">{data.name}</h2>
