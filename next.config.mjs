@@ -16,7 +16,7 @@ const nextConfig = {
             // Production Pattern
             {
               protocol: 'https',
-              hostname: 'terminspr-ve-wu11-nigerabed.onrender.com',
+              hostname: 'landrup-dans-api-4ypt.onrender.com',
               port: '',
               pathname: '/**',
             },
