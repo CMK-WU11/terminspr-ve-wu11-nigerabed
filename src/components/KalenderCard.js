@@ -1,16 +1,34 @@
+import { cookies } from "next/headers";
+import Link from "next/link";
 
-export default function KalenderCard({userData}){
-    
-     return(
-         <>
-         {userData.activities.map(activity=>
-         <div key={activity.id} className="bg-white w-[90%] flex flex-col justify-center items-start h-[8em] mt-[2em] pl-[2em] rounded-lg">
-             <h2 className="text-black font-semibold text-[2em]">{activity.name}</h2>
-             <p className="font-semibold text-xl">{activity.time}</p>
- 
-         </div>)}
- 
-         
-         </>
-     )
- }
+export default async function KalenderCard({ kalenderData }) {
+  const cookieStore = await cookies();
+
+  const role = cookieStore.get("landrup_role");
+
+  return (
+    <>
+      {!kalenderData || kalenderData.length < 1 ? (
+        <div  className="bg-white w-[90%] flex flex-col justify-center items-start h-[9em] mt-[2em] pl-[1em] rounded-lg ">
+            No Activites available for this user
+            </div>
+      ) : (
+        <div>
+          {kalenderData.map((activity) => (
+            <div
+              key={activity.id}
+              className="bg-white w-[90%] flex flex-col justify-center items-start h-[9em] mt-[2em] pl-[1em] rounded-lg"
+            >
+              <div className="text-black font-semibold text-[2.5em] overflow-hidden text-ellipsis whitespace-nowrap w-full">
+                {activity.name}
+              </div>
+              <div className="font-semibold text-xl ">
+                {activity.weekday} {activity.time}
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+    </>
+  );
+}

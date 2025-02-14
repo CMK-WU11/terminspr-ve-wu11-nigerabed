@@ -6,7 +6,7 @@ import Button from "./Button";
 import { redirect } from "next/navigation";
 
 export default function LoginForm() {
-  const [formState, formAction] = useActionState(userLoginAction, null);
+  const [formState, formAction, isPending] = useActionState(userLoginAction, null);
 
   useEffect(
     function () {
@@ -52,7 +52,7 @@ export default function LoginForm() {
         {formState?.password?._errors.map((error) => error)}
       </span>
       <div className="">
-        <Button text={"Log ind"} />
+        <Button text={isPending ? "logger ind" : "log ind"} />
       </div>
     </form>
   );
