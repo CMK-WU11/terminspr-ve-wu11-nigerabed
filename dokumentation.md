@@ -17,13 +17,15 @@ Jeg har valgt at lægge min opgave på nettet. Se den her:
 
 ##### deployed Landrup Dans server live link link
 
+[https://terminspr-ve-wu11-nigerabed.onrender.com/](https://terminspr-ve-wu11-nigerabed.onrender.com/)
 
 
 Brugere til systemet:
 
 | username | password |
 |-|-|
-| Niger | 1234 |
+| user1 | 1234 |
+| instructor1 | 1234 |
 
 ## Tech-stack
 * **NextJS**
@@ -168,6 +170,6 @@ bruger må ikke tilmeld til activity hvis bruger har ikke logged ind bruger skal
 * **Hvad gik skidt**
 - Løsning af komplekse problemer fx-tilmeld bruger til activity
 - render.com var svært
-- 
+- instructor kalender er meget svært.
 ## Konklusion
 Projektet har været en god læring, hvor jeg er blevet bedre til Next.js, React og Tailwind CSS. Jeg har også fået erfaring med moderne webudvikling. 
