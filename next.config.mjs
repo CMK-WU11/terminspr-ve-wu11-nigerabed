@@ -16,7 +16,7 @@ const nextConfig = {
             // Production Pattern
             {
               protocol: 'https',
-              hostname: 'https://terminspr-ve-wu11-nigerabed.onrender.com/',
+              hostname: 'terminspr-ve-wu11-nigerabed.onrender.com',
               port: '',
               pathname: '/**',
             },
