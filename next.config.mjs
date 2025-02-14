@@ -1,15 +1,27 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    images: {
-        remotePatterns: [
-          {
-            protocol: 'http',
-            hostname: 'localhost',
-            port: '4000',
-            pathname: '/**',
-          },
-        ],
-      },
+  images: {
+    remotePatterns:
+      process.env.NODE_ENV === 'development'
+        ? [
+            // Development Pattern
+            {
+              protocol: 'http',
+              hostname: 'localhost',
+              port: '4000', // local development server port
+              pathname: '/**',
+            },
+          ]
+        : [
+            // Production Pattern
+            {
+              protocol: 'https',
+              hostname: 'https://terminspr-ve-wu11-nigerabed.onrender.com/',
+              port: '',
+              pathname: '/**',
+            },
+          ],
+  },
 };
 
 export default nextConfig;
