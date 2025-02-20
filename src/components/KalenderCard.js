@@ -1,10 +1,6 @@
-import { cookies } from "next/headers";
-import Link from "next/link";
 
 export default async function KalenderCard({ kalenderData }) {
-  const cookieStore = await cookies();
 
-  const role = cookieStore.get("landrup_role");
 
   return (
     <>

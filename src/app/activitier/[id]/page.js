@@ -60,7 +60,7 @@ export default async function ActivityDetails({ params }) {
             className="h-[30em] w-full object-cover"
           />
 
-          {role.value === "instructor"?(<></>) : !isTilmeldt ? (
+          {role && role.value === "instructor"?(<></>) : !isTilmeldt ? (
             <TidmeldButton activityId={activityId} />
           ) : (
             <div className="absolute bottom-7 left-[6em]">

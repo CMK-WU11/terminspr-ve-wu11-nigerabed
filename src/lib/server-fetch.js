@@ -8,6 +8,7 @@ export async function serverFetch(url) {
 		
 		return await response.json()
 	} catch (error) {
+		console.log("sometthing went wrong", error)
 		throw new Error(error)
 	}
 }

@@ -37,9 +37,9 @@ export async function userLoginAction(state, formData) {
 
     console.log(data);
 
-    cookieStore.set("landrup_token", data.token);
-    cookieStore.set("landrup_userid", data.userId);
-    cookieStore.set("landrup_role", data.role);
+    cookieStore.set("landrup_token", data.token, { maxAge: 60  });
+    cookieStore.set("landrup_userid", data.userId, { maxAge: 60  });
+    cookieStore.set("landrup_role", data.role,{ maxAge: 60  });
     return { success: true };
     
   } catch (error) {
